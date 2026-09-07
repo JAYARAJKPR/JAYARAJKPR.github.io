@@ -1,5 +1,469 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jayaraj Ponrangam &mdash; Software Engineer &amp; Tech Lead</title>
+<meta name="description" content="Portfolio of Jayaraj Ponrangam - Senior Software Engineer & Tech Lead. 11+ years in Java/J2EE, full-stack, cloud, RPA and GenAI." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4efe6;
+    --paper-2: #ece4d6;
+    --card: #fbf8f2;
+    --ink: #1c1a17;
+    --ink-soft: #4b463e;
+    --muted: #8a8175;
+    --rust: #c1502e;
+    --rust-dark: #9c3d20;
+    --olive: #5a6540;
+    --line: #ddd3c2;
+    --gold: #b98a2e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Fraunces", Georgia, serif; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* grain-ish texture via radial dots */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: radial-gradient(var(--line) 0.5px, transparent 0.5px);
+    background-size: 22px 22px; opacity: .35;
+  }
+  .content { position: relative; z-index: 1; }
+
+  /* ============ TOP BAR ============ */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 40px; max-width: 1200px; margin: 0 auto;
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(244,239,230,.85); backdrop-filter: blur(8px);
+  }
+  .brand { font-family: "Fraunces", serif; font-weight: 900; font-size: 22px; letter-spacing: -.5px; }
+  .brand em { color: var(--rust); font-style: normal; }
+  .topnav { display: flex; gap: 30px; align-items: center; }
+  .topnav a { font-size: 14px; font-weight: 500; color: var(--ink-soft); position: relative; }
+  .topnav a::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 0; background: var(--rust); transition: width .25s;
+  }
+  .topnav a:hover::after { width: 100%; }
+  .topnav .resume-link {
+    border: 1.5px solid var(--ink); border-radius: 40px; padding: 8px 18px; font-weight: 600;
+  }
+  .topnav .resume-link:hover { background: var(--ink); color: var(--paper); }
+  .topnav .resume-link::after { display: none; }
+  .menu-btn { display: none; background: none; border: 0; font-size: 24px; cursor: pointer; }
+
+  /* ============ HERO ============ */
+  .hero { padding: 40px 0 80px; }
+  .hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; }
+  .kicker {
+    font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--rust); margin-bottom: 22px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .kicker::before { content: ""; width: 34px; height: 1.5px; background: var(--rust); display: inline-block; }
+  .hero h1 {
+    font-family: "Fraunces", serif; font-weight: 900; font-size: 74px; line-height: .98;
+    letter-spacing: -2px; margin-bottom: 26px;
+  }
+  .hero h1 .u { color: var(--rust); font-style: italic; }
+  .hero .intro { font-size: 19px; color: var(--ink-soft); max-width: 540px; margin-bottom: 34px; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    font-weight: 600; font-size: 15px; padding: 15px 30px; border-radius: 40px; cursor: pointer;
+    transition: transform .2s, background .2s, color .2s; border: 1.5px solid var(--ink);
+  }
+  .btn-solid { background: var(--ink); color: var(--paper); }
+  .btn-solid:hover { background: var(--rust); border-color: var(--rust); transform: translateY(-2px); }
+  .btn-line { background: transparent; color: var(--ink); }
+  .btn-line:hover { transform: translateY(-2px); background: var(--ink); color: var(--paper); }
+
+  /* Portrait */
+  .portrait-frame { position: relative; }
+  .portrait-frame .tape {
+    position: absolute; z-index: 3; width: 90px; height: 26px; background: rgba(193,80,46,.35);
+    top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg); border-radius: 2px;
+  }
+  .portrait {
+    position: relative; z-index: 2;
+    width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 6px;
+    border: 8px solid var(--card); box-shadow: 0 18px 44px rgba(28,26,23,.22);
+    transform: rotate(2deg); transition: transform .4s;
+  }
+  .portrait-frame:hover .portrait { transform: rotate(0deg); }
+  .portrait-frame::after {
+    content: ""; position: absolute; inset: 18px -14px -14px 18px; z-index: 1;
+    border: 1.5px solid var(--ink); border-radius: 6px;
+  }
+  .badge-float {
+    position: absolute; z-index: 4; bottom: 20px; right: -18px;
+    background: var(--rust); color: #fff; font-family: "Fraunces", serif; font-weight: 900;
+    width: 92px; height: 92px; border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; line-height: 1;
+    box-shadow: 0 10px 26px rgba(156,61,32,.4); transform: rotate(-8deg);
+  }
+  .badge-float .big { font-size: 30px; }
+  .badge-float .sm { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; font-family: "Inter"; font-weight: 700; margin-top: 3px; }
+
+  /* ============ MARQUEE ============ */
+  .marquee {
+    border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+    padding: 16px 0; overflow: hidden; white-space: nowrap; background: var(--ink); color: var(--paper);
+  }
+  .marquee .track { display: inline-block; animation: scroll 26s linear infinite; }
+  .marquee span { font-family: "Fraunces", serif; font-weight: 600; font-size: 22px; margin: 0 28px; }
+  .marquee span .dot { color: var(--rust); }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ============ SECTION SHELL ============ */
+  section.block { padding: 90px 0; }
+  .sec-label {
+    font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--rust); margin-bottom: 12px;
+  }
+  .sec-title {
+    font-family: "Fraunces", serif; font-weight: 900; font-size: 46px; letter-spacing: -1px;
+    line-height: 1.05; margin-bottom: 16px;
+  }
+  .sec-intro { color: var(--ink-soft); max-width: 560px; font-size: 17px; }
+
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ============ ABOUT ============ */
+  .about { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+  .about-lead { font-family: "Fraunces", serif; font-size: 26px; line-height: 1.4; color: var(--ink); }
+  .about-lead .hl { color: var(--rust); }
+  .about-body p { color: var(--ink-soft); margin-bottom: 16px; }
+  .about-body strong { color: var(--ink); }
+  .facts { display: grid; grid-template-columns: repeat(2,1fr); gap: 0; margin-top: 24px; border-top: 1.5px solid var(--line); }
+  .fact { padding: 18px 0; border-bottom: 1.5px solid var(--line); }
+  .fact:nth-child(odd) { padding-right: 20px; }
+  .fact .n { font-family: "Fraunces", serif; font-weight: 900; font-size: 38px; color: var(--ink); line-height: 1; }
+  .fact .l { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+  /* ============ EXPERTISE (accordion-ish grid) ============ */
+  .exp-list { border-top: 1.5px solid var(--ink); }
+  .exp-row {
+    display: grid; grid-template-columns: 60px 1fr 2fr; gap: 24px; align-items: start;
+    padding: 30px 0; border-bottom: 1.5px solid var(--line); transition: background .25s;
+  }
+  .exp-row:hover { background: var(--card); }
+  .exp-row .idx { font-family: "JetBrains Mono", monospace; color: var(--rust); font-size: 15px; padding-top: 4px; }
+  .exp-row h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 26px; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .exp-tags span {
+    font-size: 13px; color: var(--ink-soft); background: var(--paper-2);
+    border: 1px solid var(--line); border-radius: 30px; padding: 5px 14px;
+  }
+
+  /* ============ WORK / PROJECTS ============ */
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .work-card {
+    background: var(--card); border: 1.5px solid var(--ink); border-radius: 10px; overflow: hidden;
+    transition: transform .3s, box-shadow .3s; position: relative;
+  }
+  .work-card:hover { transform: translateY(-6px); box-shadow: 10px 12px 0 var(--ink); }
+  .work-head { padding: 26px 28px 0; }
+  .work-num { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--rust); }
+  .work-card h3 { font-family: "Fraunces", serif; font-weight: 900; font-size: 28px; margin: 6px 0 2px; letter-spacing: -.5px; }
+  .work-meta { font-size: 14px; color: var(--muted); margin-bottom: 16px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .work-meta .role { color: var(--olive); font-weight: 600; }
+  .work-body { padding: 0 28px 26px; }
+  .work-body p { color: var(--ink-soft); font-size: 15px; margin-bottom: 18px; }
+  .work-stack { display: flex; flex-wrap: wrap; gap: 7px; }
+  .work-stack span {
+    font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink);
+    border: 1px solid var(--line); padding: 3px 10px; border-radius: 4px; background: var(--paper);
+  }
+  .ribbon {
+    position: absolute; top: 16px; right: -34px; transform: rotate(45deg);
+    background: var(--rust); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    padding: 5px 40px; text-transform: uppercase;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact { background: var(--ink); color: var(--paper); border-radius: 16px; padding: 70px 50px; text-align: center; position: relative; overflow: hidden; }
+  .contact .ghost {
+    position: absolute; font-family: "Fraunces", serif; font-weight: 900; font-size: 220px;
+    color: rgba(255,255,255,.04); top: -40px; left: 50%; transform: translateX(-50%); pointer-events: none; white-space: nowrap;
+  }
+  .contact .sec-label { color: var(--rust); position: relative; }
+  .contact h2 { font-family: "Fraunces", serif; font-weight: 900; font-size: 52px; letter-spacing: -1px; position: relative; margin-bottom: 14px; }
+  .contact p { color: #cfc7ba; max-width: 480px; margin: 0 auto 32px; position: relative; }
+  .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .contact-links a {
+    display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px;
+    border: 1.5px solid rgba(255,255,255,.3); border-radius: 40px; padding: 13px 24px; transition: all .2s;
+  }
+  .contact-links a:hover { background: var(--rust); border-color: var(--rust); transform: translateY(-2px); }
+
+  footer { padding: 34px 0; text-align: center; color: var(--muted); font-size: 14px; }
+  footer .mono { color: var(--ink-soft); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 22px; }
+    .topbar { padding: 20px 22px; }
+    .topnav { display: none; }
+    .menu-btn { display: block; }
+    .topnav.open {
+      display: flex; flex-direction: column; position: absolute; top: 66px; right: 22px;
+      background: var(--card); border: 1.5px solid var(--ink); border-radius: 12px; padding: 20px 26px; gap: 18px;
+    }
+    .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+    .hero h1 { font-size: 52px; }
+    .portrait-frame { max-width: 320px; margin: 0 auto; }
+    .about, .work-grid { grid-template-columns: 1fr; gap: 34px; }
+    .exp-row { grid-template-columns: 40px 1fr; }
+    .exp-row .exp-tags { grid-column: 1 / -1; }
+    .sec-title { font-size: 36px; }
+    .contact h2 { font-size: 38px; }
+    .contact .ghost { font-size: 130px; }
+  }
+</style>
+</head>
 <body>
-  <p>Test</p>
-  </body>
+<div class="content">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="brand">Jayaraj Ponrangan</div>
+    <nav class="topnav" id="nav">
+      <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+      <a href="resume-enhanced.html" class="resume-link">Resume</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn">&#9776;</button>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">Senior Software Engineer &middot; Tech Lead</span>
+        <h1>I craft <span class="u">dependable</span> software for the enterprise.</h1>
+        <p class="intro">Hi, I'm Jayaraj Ponrangam. For over a decade I've designed, built, and led full-stack Java &amp; Node.js platforms, cloud deployments, and intelligent automation &mdash; shipping across India, Dubai, Bahrain, and the US.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-solid">See selected work</a>
+          <a href="#contact" class="btn btn-line">Let's talk &rarr;</a>
+        </div>
+      </div>
+      <div class="portrait-frame reveal">
+        <span class="tape"></span>
+        <img class="portrait" src="7043.jpg" alt="Jayaraj Ponrangam" />
+        <div class="badge-float"><span class="big">11+</span><span class="sm">Years</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="track">
+      <span>Java<span class="dot"> / </span></span><span>Spring<span class="dot"> / </span></span><span>Node.js<span class="dot"> / </span></span><span>React<span class="dot"> / </span></span><span>AWS<span class="dot"> / </span></span><span>UiPath<span class="dot"> / </span></span><span>GenAI<span class="dot"> / </span></span><span>Kubernetes<span class="dot"> / </span></span>
+      <span>Java<span class="dot"> / </span></span><span>Spring<span class="dot"> / </span></span><span>Node.js<span class="dot"> / </span></span><span>React<span class="dot"> / </span></span><span>AWS<span class="dot"> / </span></span><span>UiPath<span class="dot"> / </span></span><span>GenAI<span class="dot"> / </span></span><span>Kubernetes<span class="dot"> / </span></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="block wrap" id="about">
+    <div class="about">
+      <div class="reveal">
+        <div class="sec-label">01 &mdash; About</div>
+        <p class="about-lead">A results-driven engineer who turns complex business logic into <span class="hl">reliable, secure, production-grade</span> systems.</p>
+      </div>
+      <div class="about-body reveal">
+        <p>I bring <strong>11 years of experience</strong> in the IT industry, specializing in <strong>Java/J2EE</strong> with <strong>2 years of hands-on RPA</strong> using <strong>UiPath</strong>. I own the full lifecycle &mdash; design, development, testing, and delivery &mdash; of full-stack enterprise applications.</p>
+        <p>I deliver <strong>cloud-native applications</strong> on <strong>AWS</strong> and <strong>Heroku</strong>, and I take security seriously: remediating vulnerabilities per <strong>CVE guidelines</strong> with <strong>SonarQube</strong> and <strong>Snyk</strong>. I lead cross-functional teams and, most recently, build <strong>GenAI / LLM</strong> solutions for intelligent automation.</p>
+        <div class="facts">
+          <div class="fact"><div class="n">11+</div><div class="l">Years in IT</div></div>
+          <div class="fact"><div class="n">6</div><div class="l">Flagship projects</div></div>
+          <div class="fact"><div class="n">4</div><div class="l">Countries delivered</div></div>
+          <div class="fact"><div class="n">2</div><div class="l">Pro certifications</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERTISE -->
+  <section class="block wrap" id="expertise">
+    <div class="reveal" style="margin-bottom:44px;">
+      <div class="sec-label">02 &mdash; Expertise</div>
+      <h2 class="sec-title">What I work with</h2>
+      <p class="sec-intro">A deep backend foundation, a modern frontend, and a growing edge in cloud, automation, and AI.</p>
+    </div>
+    <div class="exp-list">
+      <div class="exp-row reveal">
+        <div class="idx">01</div>
+        <h3>Backend &amp; Languages</h3>
+        <div class="exp-tags"><span>Java</span><span>Python</span><span>Node.js</span><span>TypeScript</span><span>Spring (Core/MVC/Security)</span><span>Hibernate</span><span>J2EE</span><span>Struts</span></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="idx">02</div>
+        <h3>Frontend, Web &amp; Integration</h3>
+        <div class="exp-tags"><span>React</span><span>Next.js</span><span>JSP</span><span>jQuery</span><span>JamStack</span><span>REST</span><span>SOAP</span><span>JSON</span><span>MuleSoft</span></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="idx">03</div>
+        <h3>Data &amp; Big Data</h3>
+        <div class="exp-tags"><span>Oracle</span><span>PostgreSQL</span><span>MySQL</span><span>MSSQL</span><span>MongoDB</span><span>Apache Ignite</span><span>Spark SQL</span><span>HBase</span><span>DB2</span></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="idx">04</div>
+        <h3>Cloud &amp; DevOps</h3>
+        <div class="exp-tags"><span>AWS</span><span>GCP</span><span>Heroku</span><span>Digital Ocean</span><span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>Git</span></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="idx">05</div>
+        <h3>Automation &amp; AI</h3>
+        <div class="exp-tags"><span>UiPath</span><span>PyTorch</span><span>TensorFlow</span><span>OpenAI API</span><span>LangChain</span><span>LlamaIndex</span><span>Bedrock</span><span>SageMaker</span><span>Pinecone</span></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="idx">06</div>
+        <h3>Quality &amp; Security</h3>
+        <div class="exp-tags"><span>SonarQube</span><span>Snyk</span><span>CVE Remediation</span><span>CASE-Java</span><span>JIRA</span><span>Copilot</span><span>Cursor</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="block wrap" id="work">
+    <div class="reveal" style="margin-bottom:44px;">
+      <div class="sec-label">03 &mdash; Selected Work</div>
+      <h2 class="sec-title">Projects I've shipped</h2>
+      <p class="sec-intro">Enterprise systems across banking, insurance, payments, and automation.</p>
+    </div>
+    <div class="work-grid">
+
+      <div class="work-card reveal">
+        <div class="ribbon">Current</div>
+        <div class="work-head">
+          <div class="work-num">Project 01</div>
+          <h3>HomeServe Platform</h3>
+          <div class="work-meta"><span class="role">Sr. Software Engineer / Tech Lead</span> &middot; USA &middot; 2021&ndash;Present</div>
+        </div>
+        <div class="work-body">
+          <p>Leading onsite development and support of full-stack enterprise applications; deploying scalable, secure cloud-hosted services and driving code quality across the pipeline.</p>
+          <div class="work-stack"><span>Node.js</span><span>Spring</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>AWS</span><span>GCP</span><span>Postgres</span></div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-head">
+          <div class="work-num">Project 02</div>
+          <h3>RPA Development</h3>
+          <div class="work-meta"><span class="role">Solution Architect</span> &middot; 2017&ndash;2021</div>
+        </div>
+        <div class="work-body">
+          <p>Architected UiPath automation that streamlined workflows and improved operational efficiency. Built the project's POC and foundation, plus integration web services.</p>
+          <div class="work-stack"><span>UiPath</span><span>AngularJS</span><span>Spring</span><span>Oracle 12c</span><span>PL/SQL</span></div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-head">
+          <div class="work-num">Project 03</div>
+          <h3>Star Health Suite</h3>
+          <div class="work-meta"><span class="role">Senior Software Engineer</span> &middot; India &middot; 2018&ndash;2020</div>
+        </div>
+        <div class="work-body">
+          <p>Delivered PMS, DMS, StarFax, CRM and LMS modules for a major health insurer. Built Apache Ignite components with Spark SQL, Oracle and HBase, plus Alfresco client and integrations.</p>
+          <div class="work-stack"><span>Java</span><span>Apache Ignite</span><span>Spark SQL</span><span>HBase</span><span>WebLogic</span><span>Struts</span></div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-head">
+          <div class="work-num">Project 04</div>
+          <h3>IRCS &mdash; ePay</h3>
+          <div class="work-meta"><span class="role">Senior Software Engineer</span> &middot; Dubai &middot; 2018&ndash;2020</div>
+        </div>
+        <div class="work-body">
+          <p>Integrated Revenue Central System. Led the development and setup of Apache Ignite, built supporting components, delivered theme changes and integration services.</p>
+          <div class="work-stack"><span>Java</span><span>Apache Ignite</span><span>Oracle 10g</span><span>WebLogic</span><span>Struts</span></div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-head">
+          <div class="work-num">Project 05</div>
+          <h3>National Payment Aggregator</h3>
+          <div class="work-meta"><span class="role">Software Engineer</span> &middot; Bahrain &middot; 2017&ndash;2018</div>
+        </div>
+        <div class="work-body">
+          <p>Focused on database performance tuning and resolving critical performance issues for a national payments platform, alongside support and bug-fixing.</p>
+          <div class="work-stack"><span>Java</span><span>WebSphere 7</span><span>Oracle 11g</span><span>Struts 1.3</span><span>CUECENT BPMS</span></div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-head">
+          <div class="work-num">Project 06</div>
+          <h3>eRemit 3.0</h3>
+          <div class="work-meta"><span class="role">Senior Software Engineer</span> &middot; India &middot; 2015&ndash;2017</div>
+        </div>
+        <div class="work-body">
+          <p>Remittance platform for Canara Bank, OBC, KVB, BOI and TMB. Developed the ISO 8583 IMPS component to interact with NPCI and handled integration with exchange houses.</p>
+          <div class="work-stack"><span>Java</span><span>Struts</span><span>Spring</span><span>Hibernate</span><span>ISO 8583</span><span>Flexcube</span><span>Finacle</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block wrap" id="contact">
+    <div class="contact reveal">
+      <div class="ghost serif">Say Hello</div>
+      <div class="sec-label">04 &mdash; Contact</div>
+      <h2>Let's build something great.</h2>
+      <p>Open to senior engineering, tech lead, and architect roles. Drop a line and let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:jayarajponrangam@gmail.com">&#9993; jayarajponrangam@gmail.com</a>
+        <a href="tel:+17747323119">&#9742; +1 774-732-3119</a>
+        <a href="https://www.linkedin.com/in/connectjayaraj/" target="_blank" rel="noopener">&#128279; LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mono">&copy; <span id="yr"></span> Jayaraj Ponrangam</span> &mdash; Designed &amp; built with care.
+  </footer>
+
+</div>
+
+<script>
+  // mobile menu
+  var menuBtn = document.getElementById('menuBtn');
+  var nav = document.getElementById('nav');
+  menuBtn.addEventListener('click', function () { nav.classList.toggle('open'); });
+  nav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { nav.classList.remove('open'); }); });
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.14 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
 </html>
